@@ -45,6 +45,7 @@ if os.getenv('CLOUDINARY_CLOUD_NAME'):
         cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
         api_key=os.getenv('CLOUDINARY_API_KEY'),
         api_secret=os.getenv('CLOUDINARY_API_SECRET')
+        
     )
 
 # Create necessary directories
@@ -113,7 +114,8 @@ def download_model_from_huggingface():
         model_path = hf_hub_download(
             repo_id=Config.HUGGINGFACE_REPO,
             filename=Config.MODEL_FILENAME,
-            cache_dir=Config.MODELS_FOLDER
+            cache_dir=Config.MODELS_FOLDER,
+            token=os.getenv("HUGGINGFACE_TOKEN")
         )
         
         logger.info(f"Model downloaded successfully to: {model_path}")
