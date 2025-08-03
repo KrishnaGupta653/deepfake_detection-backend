@@ -252,6 +252,8 @@ import cv2
 import uuid
 from huggingface_hub import hf_hub_download
 import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -263,8 +265,8 @@ CORS(app, origins=["*"])
 # Configuration
 class Config:
     # Updated to use environment variable for HuggingFace model URL
-    HUGGINGFACE_REPO = os.getenv('HUGGINGFACE_REPO', 'YOUR_USERNAME/YOUR_MODEL')
-    MODEL_FILENAME = os.getenv('MODEL_FILENAME', 'production_deepfake_detector.pth')
+    HUGGINGFACE_REPO = os.getenv('HUGGINGFACE_REPO')
+    MODEL_FILENAME = os.getenv('MODEL_FILENAME')
     IMG_SIZE = 224
     MAX_FILE_SIZE = 16 * 1024 * 1024  # 16MB
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp', 'bmp'}
@@ -346,7 +348,8 @@ def download_model_from_huggingface():
         model_path = hf_hub_download(
             repo_id=Config.HUGGINGFACE_REPO,
             filename=Config.MODEL_FILENAME,
-            cache_dir=Config.MODELS_FOLDER
+            cache_dir=Config.MODELS_FOLDER,
+            token=os.getenv("HUGGINGFACE_TOKEN")
         )
         
         logger.info(f"Model downloaded successfully to: {model_path}")
