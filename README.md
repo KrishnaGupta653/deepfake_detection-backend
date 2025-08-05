@@ -358,19 +358,5 @@ services:
 - [ ] Health monitoring setup
 - [ ] Error logging configured
 
-## 🧪 Testing
-
-### Run Tests
-```bash
-# Backend tests
-python -m pytest tests/
-
-# Frontend tests
-npm test
-
-# Integration tests
-npm run test:e2e
-```
-
 
 
