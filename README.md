@@ -130,60 +130,6 @@ Recall:    98.7%
 F1-Score:  98.4%
 ```
 
-## 🛠️ API Documentation
-
-### Endpoints
-
-#### Health Check
-```http
-GET /health
-```
-
-**Response:**
-```json
-{
-  "status": "healthy",
-  "model_loaded": true,
-  "timestamp": "2024-01-20T10:30:00Z"
-}
-```
-
-#### Single Prediction
-```http
-POST /predict
-Content-Type: multipart/form-data
-
-file: [image file]
-```
-
-**Response:**
-```json
-{
-  "success": true,
-  "prediction": "Real",
-  "confidence": 95.67,
-  "probabilities": {
-    "fake": 4.33,
-    "real": 95.67
-  },
-  "analysis": "Detailed AI analysis...",
-  "gradcam": "base64_encoded_heatmap",
-  "timestamp": "2024-01-20T10:30:00Z",
-  "model_info": {
-    "name": "ResNet50",
-    "version": "1.0",
-    "accuracy": "98%+"
-  }
-}
-```
-
-#### Batch Prediction
-```http
-POST /batch_predict
-Content-Type: multipart/form-data
-
-files: [array of image files]
-```
 
 ### Error Handling
 
@@ -357,6 +303,4 @@ services:
 - [ ] Domain name pointed to server
 - [ ] Health monitoring setup
 - [ ] Error logging configured
-
-
 
